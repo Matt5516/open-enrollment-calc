@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HSA vs PPO Calculator, COBRA Cost &amp; Marketplace Comparison (2027)</title>
+<meta name="description" content="Free open enrollment calculators: HSA vs PPO break-even, COBRA cost, and employer plan vs marketplace, using official 2026 and 2027 IRS limits.">
+<link rel="canonical" href="https://matt5516.github.io/open-enrollment-calc/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Open Enrollment Calculators: HSA vs PPO, COBRA, Marketplace">
+<meta property="og:description" content="Compare health plan costs with official 2026/2027 IRS figures. Free, private, runs in your browser.">
+<meta property="og:url" content="https://matt5516.github.io/open-enrollment-calc/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#1f6feb">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css">
+<!-- AD NETWORK HEAD SCRIPT GOES HERE (e.g. AdSense). Intentionally empty. -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"Open Enrollment Calculators","url":"https://matt5516.github.io/open-enrollment-calc/","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"HSA vs PPO break-even, COBRA cost estimator and employer plan vs marketplace comparison."},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What are the 2027 HSA contribution limits?","acceptedAnswer":{"@type":"Answer","text":"For 2027 the IRS set HSA limits of $4,500 for self-only coverage and $9,000 for family coverage (Rev. Proc. 2026-24). People 55 or older can add $1,000. For 2026 the limits are $4,400 and $8,750 (Rev. Proc. 2025-19)."}},
+{"@type":"Question","name":"How much does COBRA cost?","acceptedAnswer":{"@type":"Answer","text":"Under U.S. Department of Labor rules, a plan can charge up to 102% of the full plan cost (the employee share plus the employer share, plus 2% for administration), and up to 150% during a disability extension."}}
+]}]}
+</script>
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="logo" href="./">Open Enrollment Calc</a><nav class="site"><a href="#hsa">HSA vs PPO</a><a href="#cobra">COBRA</a><a href="#market">Marketplace</a></nav></div></header>
+<main class="wrap">
+  <div class="ad-slot ad-leaderboard" data-ad-slot="top-leaderboard"></div>
+  <h1>Open Enrollment Calculators</h1>
+  <p class="lede">Three free calculators to help you understand health plan costs: HSA-eligible plan vs PPO break-even, COBRA cost, and employer plan vs marketplace. Everything runs in your browser.</p>
+  <p class="disclaimer" role="note"><strong>Not insurance, tax or legal advice.</strong> These tools are general education. They use simplified math (for example, they ignore copays and network differences) and cannot account for your specific plan documents. Results are estimates, not guarantees. Check your plan's Summary of Benefits and Coverage and talk with a licensed professional before you decide.</p>
+
+  <section class="card" id="hsa">
+    <h2>1. HSA-eligible plan (HDHP) vs PPO break-even</h2>
+    <div class="grid cols-3">
+      <div><label for="year">Plan year</label><select id="year"><option value="2027" selected>2027</option><option value="2026">2026</option></select></div>
+      <div><label for="coverage">Coverage</label><select id="coverage"><option value="self">Just me</option><option value="family">Me + family</option></select></div>
+      <div><label for="age55">Age 55 or older?</label><select id="age55"><option value="0">No</option><option value="1">Yes</option></select></div>
+    </div>
+    <div class="grid cols-2" style="margin-top:12px">
+      <fieldset class="card" style="margin:0"><legend><strong>HDHP (HSA-eligible)</strong></legend>
+        <label for="hPrem">Your premium per month ($)</label><input id="hPrem" type="number" inputmode="decimal" min="0" value="80">
+        <label for="hDed">Deductible ($)</label><input id="hDed" type="number" inputmode="decimal" min="0" value="3000">
+        <label for="hCo">Coinsurance after deductible (%)</label><input id="hCo" type="number" inputmode="decimal" min="0" max="100" value="20">
+        <label for="hOop">Out-of-pocket max ($)</label><input id="hOop" type="number" inputmode="decimal" min="0" value="6000">
+        <label for="hEr">Employer HSA contribution per year ($)</label><input id="hEr" type="number" inputmode="decimal" min="0" value="500">
+        <label for="hYou">Your HSA contribution per year ($)</label><input id="hYou" type="number" inputmode="decimal" min="0" value="2000">
+      </fieldset>
+      <fieldset class="card" style="margin:0"><legend><strong>PPO</strong></legend>
+        <label for="pPrem">Your premium per month ($)</label><input id="pPrem" type="number" inputmode="decimal" min="0" value="200">
+        <label for="pDed">Deductible ($)</label><input id="pDed" type="number" inputmode="decimal" min="0" value="1000">
+        <label for="pCo">Coinsurance after deductible (%)</label><input id="pCo" type="number" inputmode="decimal" min="0" max="100" value="20">
+        <label for="pOop">Out-of-pocket max ($)</label><input id="pOop" type="number" inputmode="decimal" min="0" value="4000">
+      </fieldset>
+    </div>
+    <div class="grid cols-3" style="margin-top:12px">
+      <div><label for="marg">Federal + state income tax rate (%)</label><input id="marg" type="number" inputmode="decimal" min="0" max="60" value="22"><span class="hint">Your marginal (top) bracket plus state rate.</span></div>
+      <div><label for="payroll">HSA contributions through payroll?</label><select id="payroll"><option value="1">Yes (also saves 7.65% FICA)</option><option value="0">No</option></select></div>
+      <div><label for="spend">Expected medical spending this year ($)</label><input id="spend" type="number" inputmode="decimal" min="0" value="2000"><span class="hint">Total allowed cost of care, before insurance pays.</span></div>
+    </div>
+    <div id="hsaOut" aria-live="polite" style="margin-top:12px"></div>
+  </section>
+
+  <div class="ad-slot ad-inline" data-ad-slot="in-content-1"></div>
+
+  <section class="card" id="cobra">
+    <h2>2. COBRA cost estimator</h2>
+    <div class="grid cols-2">
+      <div><label for="cEe">Your current premium share per month ($)</label><input id="cEe" type="number" inputmode="decimal" min="0" value="150"></div>
+      <div><label for="cEr">Employer's share per month ($)</label><input id="cEr" type="number" inputmode="decimal" min="0" value="550"><span class="hint">Often on your benefits statement or W-2 Box 12 code DD ÷ 12.</span></div>
+      <div><label for="cMonths">Months you expect to need COBRA</label><input id="cMonths" type="number" inputmode="numeric" min="1" max="36" value="6"></div>
+      <div><label for="cDis">Disability extension (months 19–29)?</label><select id="cDis"><option value="0">No</option><option value="1">Yes</option></select></div>
+    </div>
+    <div id="cobraOut" aria-live="polite" style="margin-top:12px"></div>
+  </section>
+
+  <section class="card" id="market">
+    <h2>3. Employer plan vs marketplace</h2>
+    <div class="grid cols-2">
+      <div><label for="mIncome">Household income for the year ($)</label><input id="mIncome" type="number" inputmode="decimal" min="0" value="60000"></div>
+      <div><label for="mCov">Who needs coverage?</label><select id="mCov"><option value="self">Just me</option><option value="family">Me + family</option></select></div>
+      <div><label for="mSelf">Employer plan, employee-only cost per month ($)</label><input id="mSelf" type="number" inputmode="decimal" min="0" value="120"><span class="hint">Lowest-cost plan that meets minimum value.</span></div>
+      <div><label for="mFam">Employer plan, family cost per month ($)</label><input id="mFam" type="number" inputmode="decimal" min="0" value="600"></div>
+      <div><label for="mEmpOop">Expected out-of-pocket on employer plan ($/yr)</label><input id="mEmpOop" type="number" inputmode="decimal" min="0" value="1500"></div>
+      <div><label for="mMkt">Marketplace premium per month, after any tax credit ($)</label><input id="mMkt" type="number" inputmode="decimal" min="0" value="350"><span class="hint">Get a real quote at HealthCare.gov or your state's exchange.</span></div>
+      <div><label for="mMktOop">Expected out-of-pocket on marketplace plan ($/yr)</label><input id="mMktOop" type="number" inputmode="decimal" min="0" value="2000"></div>
+    </div>
+    <div id="marketOut" aria-live="polite" style="margin-top:12px"></div>
+  </section>
+
+  <section class="card signup" id="signup">
+    <h2>Questions about your options? Get our free open enrollment checklist</h2>
+    <p class="hint">A licensed professional can review your actual plan documents with you. Sign up for reminders and a plain-English checklist.</p>
+    <!-- EMAIL SIGNUP PLACEHOLDER: replace with newsletter provider embed. Not connected. -->
+    <form data-signup-placeholder><label class="sr-only" for="email">Email</label><input id="email" type="email" placeholder="you@example.com" required><button type="submit">Remind me</button></form>
+    <p class="hint signup-msg"></p>
+  </section>
+
+  <section class="card" id="sources">
+    <h2>Official figures used and sources</h2>
+    <p class="sources">Checked <strong id="checked"></strong>.</p>
+    <ul class="sources">
+      <li>2026 HSA limits $4,400 self / $8,750 family; HDHP minimum deductible $1,700 / $3,400; HDHP out-of-pocket max $8,500 / $17,000. IRS Rev. Proc. 2025-19: <a rel="nofollow noopener" href="https://www.irs.gov/pub/irs-drop/rp-25-19.pdf">irs.gov/pub/irs-drop/rp-25-19.pdf</a></li>
+      <li>2027 HSA limits $4,500 self / $9,000 family; HDHP minimum deductible $1,750 / $3,500; HDHP out-of-pocket max $8,700 / $17,400. IRS Rev. Proc. 2026-24: <a rel="nofollow noopener" href="https://www.irs.gov/pub/irs-drop/rp-26-24.pdf">irs.gov/pub/irs-drop/rp-26-24.pdf</a></li>
+      <li>HSA catch-up contribution of $1,000 at age 55+: Internal Revenue Code §223(b)(3); see IRS Publication 969: <a rel="nofollow noopener" href="https://www.irs.gov/publications/p969">irs.gov/publications/p969</a></li>
+      <li>Employer coverage affordability (required contribution percentage) 9.96% for 2026 (Rev. Proc. 2025-25: <a rel="nofollow noopener" href="https://www.irs.gov/pub/irs-drop/rp-25-25.pdf">rp-25-25.pdf</a>) and 10.22% for 2027 (Rev. Proc. 2026-26: <a rel="nofollow noopener" href="https://www.irs.gov/pub/irs-drop/rp-26-26.pdf">rp-26-26.pdf</a>).</li>
+      <li>COBRA premiums up to 102% of plan cost (150% during disability extension), generally 18 months for job loss: U.S. Department of Labor, <a rel="nofollow noopener" href="https://www.dol.gov/agencies/ebsa/about-ebsa/our-activities/resource-center/publications/workers-guide-health-benefits-cobra">A Worker's Guide to Health Benefits Under COBRA</a></li>
+      <li>Employee FICA rate 7.65% (6.2% Social Security + 1.45% Medicare): <a rel="nofollow noopener" href="https://www.ssa.gov/oact/progdata/taxRates.html">ssa.gov</a>. Some states tax HSA contributions; adjust your tax rate if so.</li>
+    </ul>
+  </section>
+  <div class="ad-slot ad-footer" data-ad-slot="footer"></div>
+</main>
+<footer class="site"><div class="wrap">© 2026 Open Enrollment Calc · Free educational tool · Not insurance advice · <a href="privacy.html">Privacy</a></div></footer>
+<script src="assets/common.js" defer></script>
+<script src="assets/limits.js" defer></script>
+<script src="assets/calc.js" defer></script>
+<script src="assets/app.js" defer></script>
+</body>
+</html>
