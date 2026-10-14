@@ -1,0 +1,51 @@
+# Open Enrollment Calc
+
+> Free HSA vs PPO break-even calculator with 2026–2027 IRS limits, plus COBRA cost and employer plan vs marketplace comparison with a tax credit estimate.
+
+URL: https://matt5516.github.io/open-enrollment-calc/
+Last updated: 2026-10-14
+Cost: free, no signup, runs in the browser.
+
+## Key facts
+- 2027 HSA limits: $4,500 self-only, $9,000 family, +$1,000 catch-up at 55+ (IRS Rev. Proc. 2026-24). 2026: $4,400 / $8,750 (Rev. Proc. 2025-19).
+- 2027 HDHP: minimum deductible $1,750 / $3,500; out-of-pocket max $8,700 / $17,400. 2026: $1,700 / $3,400; $8,500 / $17,000.
+- From 2026, bronze and catastrophic marketplace plans are HSA-eligible (IRS Notice 2026-5).
+- ACA affordability (required contribution percentage): 9.96% for 2026 (Rev. Proc. 2025-25), 10.22% for 2027 (Rev. Proc. 2026-26).
+- COBRA: up to 102% of total plan cost (150% in disability extension months 19-29); generally 18 months after job loss (U.S. Department of Labor).
+- Net annual cost of an HSA plan = premiums + out-of-pocket - employer HSA contribution - tax saved on your HSA contributions.
+- Worked example: HSA plan $80/mo premium, $3,000 deductible, 20% coinsurance, $6,000 OOP max, $500 employer HSA, $2,000 own HSA at 22% + 7.65% FICA vs PPO $200/mo, $1,000 deductible, 20%, $4,000 OOP max. At $2,000 of care the HSA plan nets $1,867 vs $3,600 for the PPO.
+
+## FAQ
+### What are the HSA contribution limits for 2027?
+For 2027 the IRS HSA contribution limit is $4,500 for self-only coverage and $9,000 for family coverage (Rev. Proc. 2026-24). People 55 or older can contribute an extra $1,000. Employer contributions count toward the limit.
+
+### What are the HSA contribution limits for 2026?
+For 2026 the limit is $4,400 for self-only coverage and $8,750 for family coverage, plus a $1,000 catch-up at age 55 or older (Rev. Proc. 2025-19).
+
+### What counts as a high-deductible health plan (HDHP) in 2027?
+For 2027 an HDHP must have a deductible of at least $1,750 (self-only) or $3,500 (family) and an out-of-pocket maximum no higher than $8,700 or $17,400. For 2026 the figures are $1,700/$3,400 and $8,500/$17,000. Starting in 2026, bronze and catastrophic marketplace plans also count as HSA-eligible (IRS Notice 2026-5).
+
+### How do I find the break-even point between an HSA plan and a PPO?
+Add each plan's yearly premiums and the out-of-pocket cost at a given level of medical spending, then subtract employer HSA money and the tax you save on HSA contributions from the HSA plan. The break-even is the spending level where the two totals are equal. Below it the HSA plan usually costs less; above it the PPO may.
+
+### How much tax does an HSA save?
+HSA contributions are not subject to federal income tax, and payroll contributions also skip 7.65% Social Security and Medicare tax. At a 22% federal rate plus 7.65% FICA, $2,000 of payroll HSA contributions saves about $593. Most states also exempt them; California and New Jersey do not.
+
+### How much does COBRA cost?
+COBRA can cost up to 102% of the full plan premium, meaning your share plus your former employer's share plus a 2% administrative fee. During an 11-month disability extension it can be up to 150%. Coverage after a job loss generally lasts up to 18 months.
+
+### Is COBRA or a marketplace plan cheaper?
+It depends on your income and how much of your deductible you have already met. A marketplace plan may be much cheaper if a lower income qualifies you for a premium tax credit, but switching mid-year resets your deductible and out-of-pocket maximum to zero. COBRA keeps your current plan and progress.
+
+### What does 'affordable' employer coverage mean?
+For plan years starting in 2027, employer coverage is generally considered affordable if the employee-only premium for the lowest-cost plan is no more than 10.22% of household income (9.96% for 2026). If your employer plan is affordable and meets minimum value, you usually cannot get a premium tax credit for yourself.
+
+### Who qualifies for a premium tax credit in 2026?
+For 2026 coverage, households with income between 100% and 400% of the federal poverty level generally qualify if they lack affordable employer coverage. The enhanced credits expired at the end of 2025, so there is no credit above 400% of the poverty level. For one person that line is $62,600 in 2026 (400% of $15,650).
+
+### Is this insurance advice?
+No. These calculators are general education using simplified math. They do not know your plan's network, drug list or exact rules. Check your plan's Summary of Benefits and Coverage and talk with a licensed professional before you decide.
+
+## Related tools
+- [Card Flip Calc](https://matt5516.github.io/card-flip-calc/): Is it worth grading? Profit and break-even by grade for PSA, SGC, BGS and CGC.
+- [Fantasy Tools](https://matt5516.github.io/fantasy-tools/): Start/sit calls, dynasty trade calculator with picks, and Sleeper league import.

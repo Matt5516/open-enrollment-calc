@@ -2,9 +2,9 @@
   function r2(n){return Math.round(parseFloat((n*100).toFixed(6)))/100;}
   // Out-of-pocket for a given amount of allowed medical spend (simplified: deductible, then coinsurance, capped at OOP max; copays ignored)
   function oop(spend, p){
-    if (spend<=0) return 0;
+    if (spend<=0) return Math.min(p.copays||0, p.oopMax);
     var c = spend <= p.deductible ? spend : p.deductible + p.coins*(spend - p.deductible);
-    return Math.min(c, p.oopMax);
+    return Math.min(c + (p.copays||0), p.oopMax);
   }
   /* plan: {premiumAnnual, deductible, coins (0-1), oopMax, employerHsa, yourHsa}; tax: {marginal, fica (0/0.0765)} */
   function annualCost(spend, plan, tax){
@@ -42,6 +42,27 @@
     var mkt = r2(o.marketMonthly*12 + Math.min(o.expectedSpendMkt, o.mktOopMax||Infinity));
     return {pct:pct, monthlyCap:cap, selfAffordable:selfAffordable, familyAffordable:familyAffordable, employerAnnual:emp, marketAnnual:mkt, diff:r2(mkt-emp)};
   }
-  var api={oop:oop,annualCost:annualCost,compare:compare,hsaLimit:hsaLimit,cobra:cobra,employerVsMarket:employerVsMarket};
+
+  // HSA money you can actually put in: limit minus employer money
+  function hsaRoom(limit, employer){ return Math.max(0, limit - (employer||0)); }
+  // Premium tax credit estimate (illustrative): uses HHS poverty guideline for the prior year and the IRS applicable-percentage table.
+  function ptc(o, L){
+    var y=L.years[o.year], f=y.fpl, size=Math.max(1,o.size|0), fpl=f.base + f.add*(size-1), pctFpl=o.income/fpl*100;
+    var out={fpl:fpl, pctFpl:Math.round(pctFpl), credit:0, expectedMonthly:null, applicablePct:null, note:''};
+    if (pctFpl<100){ out.note='below100'; return out; }
+    if (pctFpl>400){ out.note='above400'; return out; }
+    var t=y.ptcTable, ap=t[t.length-1][3];
+    for (var i=0;i<t.length;i++){ var b=t[i]; if (pctFpl < b[1] || i===t.length-1){ ap = b[2] + (b[3]-b[2]) * Math.min(1,Math.max(0,(pctFpl-b[0])/(b[1]-b[0]))); break; } }
+    out.applicablePct=Math.round(ap*10000)/100; out.expectedMonthly=r2(o.income*ap/12);
+    out.credit=r2(Math.max(0,(o.benchmarkMonthly||0)-out.expectedMonthly)); return out;
+  }
+  // Future value of yearly HSA deposits invested at `rate` (deposit at start of each year)
+  function hsaGrowth(annual, years, rate){ var b=0, rows=[]; for (var i=1;i<=years;i++){ b=(b+annual)*(1+rate); rows.push(r2(b)); } return rows; }
+  // COBRA vs marketplace for the rest of the year: COBRA keeps deductible progress, a new plan resets it.
+  function cobraVsMarket(o){
+    var cobra=r2(o.months*o.cobraMonthly + o.cobraOop), market=r2(o.months*o.marketMonthly + o.marketOop);
+    return {cobra:cobra, market:market, diff:r2(market-cobra)};
+  }
+  var api={hsaRoom:hsaRoom,ptc:ptc,hsaGrowth:hsaGrowth,cobraVsMarket:cobraVsMarket,oop:oop,annualCost:annualCost,compare:compare,hsaLimit:hsaLimit,cobra:cobra,employerVsMarket:employerVsMarket};
   if (typeof module!=='undefined'&&module.exports) module.exports=api; else root.OECalc=api;
 })(this);
