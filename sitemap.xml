@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://matt5516.github.io/open-enrollment-calc/</loc><lastmod>2026-10-14</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://matt5516.github.io/open-enrollment-calc/hsa-vs-ppo/</loc><lastmod>2026-10-14</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://matt5516.github.io/open-enrollment-calc/compare-plans/</loc><lastmod>2026-10-14</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://matt5516.github.io/open-enrollment-calc/cobra-calculator/</loc><lastmod>2026-10-14</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://matt5516.github.io/open-enrollment-calc/marketplace-vs-employer/</loc><lastmod>2026-10-14</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://matt5516.github.io/open-enrollment-calc/hsa-paycheck-calculator/</loc><lastmod>2026-10-14</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://matt5516.github.io/open-enrollment-calc/hsa-contribution-limits-2026/</loc><lastmod>2026-10-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://matt5516.github.io/open-enrollment-calc/employer-coverage-affordability-2026/</loc><lastmod>2026-10-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://matt5516.github.io/open-enrollment-calc/premium-tax-credit-table-2026/</loc><lastmod>2026-10-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -9,10 +14,8 @@
   <url><loc>https://matt5516.github.io/open-enrollment-calc/employer-coverage-affordability-2027/</loc><lastmod>2026-10-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://matt5516.github.io/open-enrollment-calc/premium-tax-credit-table-2027/</loc><lastmod>2026-10-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://matt5516.github.io/open-enrollment-calc/federal-poverty-level-2027/</loc><lastmod>2026-10-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://matt5516.github.io/open-enrollment-calc/hsa-vs-ppo/</loc><lastmod>2026-10-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://matt5516.github.io/open-enrollment-calc/is-an-hsa-worth-it/</loc><lastmod>2026-10-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://matt5516.github.io/open-enrollment-calc/hsa-vs-fsa/</loc><lastmod>2026-10-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://matt5516.github.io/open-enrollment-calc/hsa-paycheck-calculator/</loc><lastmod>2026-10-14</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://matt5516.github.io/open-enrollment-calc/hsa-catch-up-contributions/</loc><lastmod>2026-10-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://matt5516.github.io/open-enrollment-calc/bronze-plans-hsa-eligible/</loc><lastmod>2026-10-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://matt5516.github.io/open-enrollment-calc/family-glitch/</loc><lastmod>2026-10-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>

@@ -5,7 +5,7 @@
   function stat(k,v,cls){ return '<div class="stat"><div class="k">'+k+'</div><div class="v '+(cls||'')+'">'+v+'</div></div>'; }
   function bad(formId){ var errs=0; document.querySelectorAll('#'+formId+' input[type=number]').forEach(function(el){ var b=el.value!==''&&(+el.value<0||!isFinite(+el.value)); el.setAttribute('aria-invalid',b?'true':'false'); if(b) errs++; }); return errs; }
   var summary={hsa:'',cobra:'',market:''};
-  function actions(key){ return '<div class="actions"><button type="button" class="btn sm" data-share="'+key+'">'+UI.icon('share')+'Share</button><button type="button" class="btn ghost sm" data-copy="'+key+'">'+UI.icon('copy')+'Copy summary</button></div>'; }
+  function actions(key){ return '<div class="actions"><button type="button" class="btn ghost sm" data-print>'+UI.icon('copy')+'Print / PDF</button><button type="button" class="btn sm" data-share="'+key+'">'+UI.icon('share')+'Share</button><button type="button" class="btn ghost sm" data-copy="'+key+'">'+UI.icon('copy')+'Copy summary</button></div>'; }
   function errBox(){ return '<div class="alert err">'+UI.icon('alert')+'<div>Some numbers are negative or invalid. Fix the highlighted fields.</div></div>'; }
   function hsa(){
     var out=$('hsaOut'); if (bad('hsaForm')){ out.innerHTML=errBox(); return; }
@@ -74,7 +74,7 @@
     out.innerHTML=h;
     summary.market='Employer vs marketplace ('+y+'): employer '+m(empAnnual,true)+'/yr vs marketplace '+m(mktAnnual,true)+'/yr; est. tax credit '+(eligible?m(p.credit,true):'$0')+'/mo; income at '+p.pctFpl+'% of the poverty level.';
   }
-  function all(){ hsa(); cobra(); market(); history.replaceState(null,'',UI.stateURL()); }
+  function all(){ if($('hsaOut')) hsa(); if($('cobraOut')) cobra(); if($('marketOut')) market(); history.replaceState(null,'',UI.stateURL()); }
   var go=UI.debounce(all,40);
   document.querySelector('main').addEventListener('input',function(e){ if(e.target.closest('form')) go(); });
   document.querySelector('main').addEventListener('change',function(e){ if(e.target.closest('form')||e.target.type==='hidden') go(); });
