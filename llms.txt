@@ -1,4 +1,4 @@
-# Open Enrollment Calc
+# EnrollMath
 
 > Free HSA vs PPO break-even calculator with 2026–2027 IRS limits, plus COBRA cost and employer plan vs marketplace comparison with a tax credit estimate.
 
@@ -14,6 +14,28 @@ Cost: free, no signup, runs in the browser.
 - COBRA: up to 102% of total plan cost (150% in disability extension months 19-29); generally 18 months after job loss (U.S. Department of Labor).
 - Net annual cost of an HSA plan = premiums + out-of-pocket - employer HSA contribution - tax saved on your HSA contributions.
 - Worked example: HSA plan $80/mo premium, $3,000 deductible, 20% coinsurance, $6,000 OOP max, $500 employer HSA, $2,000 own HSA at 22% + 7.65% FICA vs PPO $200/mo, $1,000 deductible, 20%, $4,000 OOP max. At $2,000 of care the HSA plan nets $1,867 vs $3,600 for the PPO.
+
+## Guides
+- [HSA limits 2026](https://matt5516.github.io/open-enrollment-calc/hsa-contribution-limits-2026/): 2026 HSA contribution limits are $4,400 for self-only and $8,750 for family coverage, plus $1,000 at 55. HDHP limits included.
+- [Affordability rule 2026](https://matt5516.github.io/open-enrollment-calc/employer-coverage-affordability-2026/): For 2026 plan years, employer coverage is “affordable” if the employee-only premium is 9.96% of household income or less. What it means for marketplace tax credits.
+- [Tax credit table 2026](https://matt5516.github.io/open-enrollment-calc/premium-tax-credit-table-2026/): The 2026 applicable percentage table for marketplace premium tax credits: what share of income you are expected to pay at each poverty level, with worked examples.
+- [Poverty level for 2026 coverage](https://matt5516.github.io/open-enrollment-calc/federal-poverty-level-2026/): Poverty level income amounts used for 2026 marketplace coverage (from the 2025 HHS guidelines), at 100%, 138%, 150%, 200%, 250%, 300% and 400% by household size.
+- [HSA limits 2027](https://matt5516.github.io/open-enrollment-calc/hsa-contribution-limits-2027/): 2027 HSA contribution limits are $4,500 for self-only and $9,000 for family coverage, plus $1,000 at 55. HDHP limits included.
+- [Affordability rule 2027](https://matt5516.github.io/open-enrollment-calc/employer-coverage-affordability-2027/): For 2027 plan years, employer coverage is “affordable” if the employee-only premium is 10.22% of household income or less. What it means for marketplace tax credits.
+- [Tax credit table 2027](https://matt5516.github.io/open-enrollment-calc/premium-tax-credit-table-2027/): The 2027 applicable percentage table for marketplace premium tax credits: what share of income you are expected to pay at each poverty level, with worked examples.
+- [Poverty level for 2027 coverage](https://matt5516.github.io/open-enrollment-calc/federal-poverty-level-2027/): Poverty level income amounts used for 2027 marketplace coverage (from the 2026 HHS guidelines), at 100%, 138%, 150%, 200%, 250%, 300% and 400% by household size.
+- [HSA vs PPO: which is better?](https://matt5516.github.io/open-enrollment-calc/hsa-vs-ppo/): When an HSA-eligible high-deductible plan beats a PPO and when it does not: premiums, deductibles, employer HSA money, taxes and the break-even level of spending.
+- [Is an HSA worth it?](https://matt5516.github.io/open-enrollment-calc/is-an-hsa-worth-it/): Whether an HSA is worth it: the triple tax break, investing for retirement, when a high deductible hurts, and how to check with your own numbers.
+- [HSA vs FSA](https://matt5516.github.io/open-enrollment-calc/hsa-vs-fsa/): HSA vs FSA side by side: eligibility, rollover, ownership, investing, and how to decide. Includes 2027 HSA limits.
+- [HSA per-paycheck calculator](https://matt5516.github.io/open-enrollment-calc/hsa-paycheck-calculator/): Find the HSA contribution per paycheck that reaches the 2026 or 2027 maximum, after employer money and catch-up, for weekly, biweekly, semimonthly or monthly pay.
+- [HSA catch-up at 55](https://matt5516.github.io/open-enrollment-calc/hsa-catch-up-contributions/): How the $1,000 HSA catch-up contribution works from age 55, including the rule that each spouse needs their own HSA, and what changes at Medicare.
+- [Bronze plans & HSAs (2026)](https://matt5516.github.io/open-enrollment-calc/bronze-plans-hsa-eligible/): From 2026, bronze and catastrophic marketplace plans count as HSA-eligible (IRS Notice 2026-5). What it means for HSA contributions and plan choice.
+- [Family glitch fix](https://matt5516.github.io/open-enrollment-calc/family-glitch/): How the family glitch fix works: family members are tested on the cost of family coverage, so many can get marketplace tax credits even if the employee cannot.
+- [COBRA FAQ](https://matt5516.github.io/open-enrollment-calc/cobra-faq/): Plain answers to COBRA questions: the 102% cost rule, 18/29/36 months, 60-day election and 45-day payment deadlines, and switching to the marketplace.
+- [COBRA vs marketplace](https://matt5516.github.io/open-enrollment-calc/cobra-vs-marketplace/): How to compare COBRA with an ACA marketplace plan: premium at 102%, deductible already met, tax credits, networks, and a calculator for the rest of the year.
+- [How COBRA cost is calculated](https://matt5516.github.io/open-enrollment-calc/cobra-cost-calculator/): COBRA costs up to 102% of the total plan premium. How to find the total premium (W-2 code DD), examples and a calculator.
+- [Health plan calculators compared](https://matt5516.github.io/open-enrollment-calc/health-plan-calculators-compared/): Free health plan calculators side by side: which cover 2027 limits, COBRA deductible carry-over, tax credits from your own quote, charts and share links.
+- [Open enrollment checklist](https://matt5516.github.io/open-enrollment-calc/open-enrollment-checklist/): A 10-step open enrollment checklist: estimate your care, compare total cost not premiums, check networks and drugs, use HSA money and avoid common mistakes.
 
 ## FAQ
 ### What are the HSA contribution limits for 2027?
@@ -47,5 +69,5 @@ For 2026 coverage, households with income between 100% and 400% of the federal p
 No. These calculators are general education using simplified math. They do not know your plan's network, drug list or exact rules. Check your plan's Summary of Benefits and Coverage and talk with a licensed professional before you decide.
 
 ## Related tools
-- [Card Flip Calc](https://matt5516.github.io/card-flip-calc/): Is it worth grading? Profit and break-even by grade for PSA, SGC, BGS and CGC.
-- [Fantasy Tools](https://matt5516.github.io/fantasy-tools/): Start/sit calls, dynasty trade calculator with picks, and Sleeper league import.
+- [GradeOrFlip](https://matt5516.github.io/card-flip-calc/): Is it worth grading? Profit and break-even by grade for PSA, SGC, BGS and CGC.
+- [DynastyMath](https://matt5516.github.io/fantasy-tools/): Start/sit calls, dynasty trade calculator with picks, and Sleeper league import.

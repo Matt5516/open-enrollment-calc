@@ -1,6 +1,7 @@
 {
- "name": "Open Enrollment Calc",
- "short_name": "OE Calc",
+ "name": "EnrollMath",
+ "short_name": "EnrollMath",
+ "description": "Pick the health plan that actually costs less.",
  "start_url": "./",
  "display": "standalone",
  "background_color": "#0b1020",
