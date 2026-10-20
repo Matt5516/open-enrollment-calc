@@ -6,7 +6,7 @@
   function bad(formId){ var errs=0; document.querySelectorAll('#'+formId+' input[type=number]').forEach(function(el){ var b=el.value!==''&&(+el.value<0||!isFinite(+el.value)); el.setAttribute('aria-invalid',b?'true':'false'); if(b) errs++; }); return errs; }
   var summary={hsa:'',cobra:'',market:''};
   function actions(key){ return '<div class="actions"><button type="button" class="btn ghost sm" data-print>'+UI.icon('copy')+'Print / PDF</button><button type="button" class="btn sm" data-share="'+key+'">'+UI.icon('share')+'Share</button><button type="button" class="btn ghost sm" data-copy="'+key+'">'+UI.icon('copy')+'Copy summary</button></div>'; }
-  function errBox(){ return '<div class="alert err">'+UI.icon('alert')+'<div>Some numbers are negative or invalid. Fix the highlighted fields.</div></div>'; }
+  function errBox(){ return '<div class="alert err">'+UI.icon('alert')+'<div>Check the highlighted fields. Numbers can\'t be negative.</div></div>'; }
   function hsa(){
     var out=$('hsaOut'); if (bad('hsaForm')){ out.innerHTML=errBox(); return; }
     var y=$('year').value, cov=$('coverage').value, Y=L.years[y], lim=OECalc.hsaLimit(L,y,cov,$('age55').value==='1');
@@ -15,7 +15,7 @@
     var tax={marginal:n('marg')/100, fica:$('payroll').value==='1'?L.fica:0};
     var hd={premiumAnnual:n('hPrem')*12,deductible:n('hDed'),coins:n('hCo')/100,oopMax:n('hOop'),employerHsa:n('hEr'),yourHsa:you};
     var pp={premiumAnnual:n('pPrem')*12,deductible:n('pDed'),coins:n('pCo')/100,oopMax:n('pOop'),copays:n('pCopay')};
-    if (!hd.oopMax||!pp.oopMax){ out.innerHTML='<div class="empty">'+UI.icon('heart')+'<p><strong>Add both plans</strong><br>Enter each plan\'s out-of-pocket maximum to compare.</p></div>'; return; }
+    if (!hd.oopMax||!pp.oopMax){ out.innerHTML='<div class="empty">'+UI.icon('heart')+'<p><strong>Add both plans</strong><br>Enter each plan\'s out-of-pocket max to see which costs less.</p></div>'; return; }
     var s=n('spend'), ch=OECalc.annualCost(s,hd,tax), cp=OECalc.annualCost(s,pp,tax), c=OECalc.compare(hd,pp,tax);
     var maxX=Math.max(hd.oopMax,pp.oopMax)*2.2, pts=function(plan){ var a=[]; for(var i=0;i<=60;i++){ var x=maxX*i/60; a.push([x,OECalc.annualCost(x,plan,tax)]); } return a; };
     var winner=ch<=cp?'HSA plan':'PPO', diff=Math.abs(cp-ch);
@@ -31,8 +31,8 @@
     var g=OECalc.hsaGrowth(you+n('hEr'),Math.max(1,Math.min(40,Math.round(n('yrs')))),n('ret')/100);
     h+='<h3 style="margin-top:16px">HSA growth</h3><p style="margin:0">Depositing '+m(you+n('hEr'),true)+' a year at '+n('ret')+'% could grow to <strong>'+m(g[g.length-1],true)+'</strong> in '+g.length+' years if you don\'t spend it. Illustration only; returns aren\'t guaranteed.</p>';
     var warn=[], minD=cov==='family'?Y.hdhpMinDedFamily:Y.hdhpMinDedSelf, maxO=cov==='family'?Y.hdhpOopFamily:Y.hdhpOopSelf;
-    if (n('hYou')>room) warn.push('Your HSA amount is above the '+y+' limit. We counted only '+m(room,true)+'.');
-    if (hd.deductible<minD) warn.push('An employer HDHP needs a deductible of at least '+m(minD,true)+' in '+y+'. This plan may not be HSA-eligible.');
+    if (n('hYou')>room) warn.push('Your HSA amount is above the '+y+' limit. Only '+m(room,true)+' counts here.');
+    if (hd.deductible<minD) warn.push('An employer HDHP needs a deductible of at least '+m(minD,true)+' in '+y+'. This plan may not qualify for an HSA.');
     if (hd.oopMax>maxO) warn.push('HSA-eligible plans can\'t have an out-of-pocket max above '+m(maxO,true)+' in '+y+'.');
     warn.forEach(function(w){ h+='<div class="alert">'+UI.icon('alert')+'<div>'+UI.esc(w)+'</div></div>'; });
     h+=actions('hsa'); out.innerHTML=h;
@@ -40,7 +40,7 @@
   }
   function cobra(){
     var out=$('cobraOut'); if (bad('cobraForm')){ out.innerHTML=errBox(); return; }
-    var tot=n('cEe')+n('cEr'); if (!tot){ out.innerHTML='<div class="empty">'+UI.icon('dollar')+'<p><strong>Enter your plan cost</strong><br>Your share plus your employer\'s share per month.</p></div>'; return; }
+    var tot=n('cEe')+n('cEr'); if (!tot){ out.innerHTML='<div class="empty">'+UI.icon('dollar')+'<p><strong>Enter your monthly plan cost</strong><br>Add your monthly share plus your employer\'s share.</p></div>'; return; }
     var r=OECalc.cobra(tot,Math.max(1,Math.round(n('cMonths'))),L,$('cDis').value==='1');
     var care=n('cCare'), met=n('cMet');
     // Simplified: you pay care up to the remaining deductible (coinsurance after that is ignored on both sides).
@@ -48,7 +48,7 @@
     var cv=OECalc.cobraVsMarket({months:r.months,cobraMonthly:r.monthly,marketMonthly:n('cMkt'),cobraOop:cobraOop,marketOop:mktOop});
     var h='<h2>'+UI.icon('dollar')+'COBRA cost</h2><div class="stats s3">'+stat('COBRA / month',m(r.monthly))+stat('vs. you pay now',UI.signed(r.monthly-n('cEe')),'neg')+stat('Total, '+r.months+' months',m(r.total,true))+'</div>';
     if ($('cDis').value==='1') h+='<p class="hint">Months 19-29 estimated at up to 150%: '+m(r.monthlyExt)+'/month.</p>';
-    if (n('cMonths')>18 && $('cDis').value!=='1') h+='<div class="alert">'+UI.icon('info')+'<div>COBRA after a job loss generally lasts up to 18 months, so this estimate stops at 18.</div></div>';
+    if (n('cMonths')>18 && $('cDis').value!=='1') h+='<div class="alert">'+UI.icon('info')+'<div>COBRA usually lasts up to 18 months after a job loss, so the estimate stops at 18.</div></div>';
     h+='<h3 style="margin-top:14px">COBRA vs marketplace for '+r.months+' months</h3><div class="verdict '+(cv.diff>=0?'good':'warn')+'"><span class="vicon">'+UI.icon('info')+'</span><div><strong class="big">'+(cv.diff>=0?'COBRA':'Marketplace')+' costs about '+m(Math.abs(cv.diff),true)+' less</strong><span>COBRA '+m(cv.cobra,true)+' vs marketplace '+m(cv.market,true)+' (premiums plus estimated out-of-pocket). A new plan resets your deductible; COBRA keeps the '+m(met,true)+' you\'ve met.</span></div></div>';
     h+=UI.bars([{label:'COBRA',value:cv.cobra,color:'#0d9488'},{label:'Marketplace',value:cv.market,color:'#2563eb'}],{label:'COBRA vs marketplace total cost',h:170});
     h+='<p class="hint">You generally have 60 days to elect COBRA, and losing job-based coverage opens a 60-day special enrollment period for the marketplace.</p>'+actions('cobra');
@@ -58,7 +58,7 @@
   function market(){
     var out=$('marketOut'); if (bad('mktForm')){ out.innerHTML=errBox(); return; }
     var y=$('year').value, cov=$('coverage').value, inc=n('mIncome');
-    if (!inc){ out.innerHTML='<div class="empty">'+UI.icon('users')+'<p><strong>Enter household income</strong><br>We use it for the affordability test and the tax credit estimate.</p></div>'; return; }
+    if (!inc){ out.innerHTML='<div class="empty">'+UI.icon('users')+'<p><strong>Enter household income</strong><br>It drives the affordability test and the tax credit estimate.</p></div>'; return; }
     var r=OECalc.employerVsMarket({year:y,coverage:cov,householdIncome:inc,employerSelfMonthly:n('mSelf'),employerFamilyMonthly:n('mFam'),expectedSpendEmp:n('mEmpOop'),expectedSpendMkt:n('mMktOop'),marketMonthly:0},L);
     var p=OECalc.ptc({year:y,income:inc,size:n('mSize'),benchmarkMonthly:n('mBench')},L);
     var eligible=!r.selfAffordable || cov==='family'&&!r.familyAffordable, credit=eligible?p.credit:0, net=Math.max(0,n('mPlan')-credit);

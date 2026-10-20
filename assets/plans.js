@@ -9,8 +9,8 @@ addEventListener('DOMContentLoaded',function(){ var $=UI.$, m=UI.money, box=$('c
   function read(){ return [].map.call(box.querySelectorAll('fieldset'),function(fs){ var o={}; fs.querySelectorAll('[data-f]').forEach(function(x){ o[x.dataset.f]=x.dataset.f==='name'?x.value:(+x.value||0); }); return o; }); }
   function cost(p,s){ return OECalc.annualCost(s,{premiumAnnual:p.prem*12,deductible:p.ded,coins:p.co/100,oopMax:p.oop,employerHsa:p.er,yourHsa:0},{marginal:0,fica:0}); }
   function run(){ var P=read(), U={low:UI.num('uLow'),med:UI.num('uMed'),high:UI.num('uHigh')}, u=$('use').value, s=U[u];
-    $('useNote').textContent='Medical spending assumed: '+m(s,true)+' (change in Advanced options).';
-    if(P.length<2){ $('cpOut').innerHTML='<div class="empty"><p>Add at least two plans.</p></div>'; return; }
+    $('useNote').textContent='Assumes '+m(s,true)+' of medical spending. Change it in Advanced options.';
+    if(P.length<2){ $('cpOut').innerHTML='<div class="empty"><p>Add at least two plans to compare.</p></div>'; return; }
     var c=P.map(function(p,i){ return {p:p,i:i,low:cost(p,U.low),med:cost(p,U.med),high:cost(p,U.high),worst:p.prem*12+p.oop-p.er}; }), best=c.slice().sort(function(a,b){return a[u]-b[u];});
     var h='<h2>'+UI.icon('chart')+'Cheapest at '+({low:'low',med:'medium',high:'high'})[u]+' use</h2><div class="verdict good"><span class="vicon">'+UI.icon('check')+'</span><div><strong class="big">'+UI.esc(best[0].p.name||'Plan '+(best[0].i+1))+'</strong><span>About '+m(best[1][u]-best[0][u],true)+' a year less than '+UI.esc(best[1].p.name||'the next plan')+'.</span></div></div>';
     h+=UI.bars(c.map(function(x){return {label:(x.p.name||'Plan '+(x.i+1)).slice(0,12),value:x[u],color:COL[x.i%4]};}),{label:'Yearly cost of each plan',h:190});
@@ -22,7 +22,7 @@ addEventListener('DOMContentLoaded',function(){ var $=UI.$, m=UI.money, box=$('c
     history.replaceState(null,'',UI.stateURL({p:JSON.stringify(P.map(function(p){return F.map(function(f){return p[f];});}))})); }
   var st=UI.readState(), init=DEF; try{ if(st.params.get('p')) init=JSON.parse(st.params.get('p')); }catch(e){}
   init.slice(0,4).forEach(card); UI.segs(run); UI.syncSegs();
-  $('cpAdd').addEventListener('click',function(){ var n=box.querySelectorAll('fieldset').length; if(n>=4){ UI.toast('Up to 4 plans'); return; } card(['Plan '+(n+1),150,2000,20,5000,0],n); run(); });
+  $('cpAdd').addEventListener('click',function(){ var n=box.querySelectorAll('fieldset').length; if(n>=4){ UI.toast('Four plans is the max'); return; } card(['Plan '+(n+1),150,2000,20,5000,0],n); run(); });
   box.addEventListener('click',function(e){ if(e.target.closest('[data-rm]')){ e.target.closest('fieldset').remove(); run(); } });
   document.addEventListener('click',function(e){ if(e.target.closest('#cpLink')) UI.copy(location.href,'Link copied'); });
   $('cpForm').addEventListener('input',UI.debounce(run,40)); run(); });
